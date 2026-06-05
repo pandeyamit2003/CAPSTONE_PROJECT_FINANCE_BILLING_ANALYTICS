@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FinanceBilling.API/FinanceBilling.API.csproj" />
+  <Project Path="FinanceBilling.Data/FinanceBilling.Data.csproj" />
+  <Project Path="FinanceBilling.MVC/FinanceBilling.MVC.csproj" />
+  <Project Path="FinanceBilling.Tests/FinanceBilling.Tests.csproj" />
+</Solution>

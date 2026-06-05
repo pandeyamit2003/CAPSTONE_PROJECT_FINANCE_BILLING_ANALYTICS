@@ -1,0 +1,54 @@
+﻿@model FinanceBilling.MVC.Models.PaymentViewModel
+
+<!-- Page Heading -->
+<h2>Edit Payment</h2>
+
+<!-- Edit Payment Form -->
+<form asp-action="Edit" method="post">
+
+    <!-- Hidden Payment ID Field -->
+    <input asp-for="PaymentId" hidden />
+
+    <!-- Invoice ID Field -->
+    <div class="mb-3">
+        <label>Invoice Id</label>
+        <input asp-for="InvoiceId"
+               class="form-control" />
+    </div>
+
+    <!-- Amount Paid Field -->
+    <div class="mb-3">
+        <label>Amount Paid</label>
+        <input asp-for="AmountPaid"
+               class="form-control" />
+    </div>
+
+    <!-- Payment Date Field -->
+    <div class="mb-3">
+        <label>Payment Date</label>
+        <input asp-for="PaymentDate"
+               type="date"
+               class="form-control" />
+    </div>
+
+    <!-- Payment Method Field -->
+    <div class="mb-3">
+        <label>Payment Method</label>
+        <input asp-for="PaymentMethod"
+               class="form-control" />
+    </div>
+
+    <!-- Update Payment Button -->
+    <button type="submit"
+            class="btn btn-warning">
+        Update Payment
+    </button>
+
+    <!-- Back Button -->
+    <a asp-action="Index"
+           class="btn text-white"
+           style="background:linear-gradient(45deg,#6f42c1,#0dcaf0);border:none;">
+        ← Back
+    </a>
+
+</form>

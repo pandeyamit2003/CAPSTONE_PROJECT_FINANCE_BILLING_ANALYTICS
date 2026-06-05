@@ -1,0 +1,47 @@
+﻿@model FinanceBilling.MVC.Models.PaymentViewModel
+
+<!-- Page Heading -->
+<h2>Payment Details</h2>
+
+<!-- Payment Details Table -->
+<table class="table">
+
+    <!-- Payment ID -->
+    <tr>
+        <th>Payment Id</th>
+        <td>@Model.PaymentId</td>
+    </tr>
+
+    <!-- Invoice ID -->
+    <tr>
+        <th>Invoice Id</th>
+        <td>@Model.InvoiceId</td>
+    </tr>
+
+    <!-- Amount Paid -->
+    <tr>
+        <th>Amount Paid</th>
+        <td>₹@Model.AmountPaid</td>
+    </tr>
+
+    <!-- Payment Date -->
+    <tr>
+        <th>Payment Date</th>
+        <td>@Model.PaymentDate.ToShortDateString()</td>
+    </tr>
+
+    <!-- Payment Method -->
+    <tr>
+        <th>Payment Method</th>
+        <td>@Model.PaymentMethod</td>
+    </tr>
+
+</table>
+
+<!-- Back Button -->
+<a asp-action="Index"
+       class="btn text-white"
+       style="background:linear-gradient(45deg,#6f42c1,#0dcaf0);border:none;">
+    ← Back
+</a>
+</a>

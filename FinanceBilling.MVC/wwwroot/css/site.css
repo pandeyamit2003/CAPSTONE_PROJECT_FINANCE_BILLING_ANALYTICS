@@ -1,0 +1,247 @@
+/* Apply full height to html and body */
+html,
+body {
+    height: 100%;
+}
+
+/* Main page styling */
+body {
+    display: flex;
+    flex-direction: column;
+    background: #f8fafc;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Ensures content pushes footer to bottom */
+.content-wrapper {
+    flex: 1;
+}
+
+ /* NAVBAR */
+
+/* Navigation bar styling */
+.navbar {
+    box-shadow: 0 4px 15px rgba(0,0,0,.15);
+}
+
+/* Brand/logo styling */
+.navbar-brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* Navigation links */
+.nav-link {
+    font-weight: 500;
+    transition: .3s;
+}
+
+    /* Navigation link hover effect */
+    .nav-link:hover {
+        color: #ffd700 !important;
+    }
+
+/*   HERO SECTION  */
+
+/* Hero section container */
+.hero-section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+    /* Hero section heading */
+    .hero-section h1 {
+        color: #0d6efd;
+        font-weight: 700;
+    }
+
+/* WELCOME BANNER */
+
+/* Welcome banner styling */
+.welcome-banner {
+    background: white;
+    color: black;
+    border: 2px solid black;
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+    /* Welcome banner title */
+    .welcome-banner h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: black;
+    }
+
+    /* Welcome banner description */
+    .welcome-banner p {
+        margin-bottom: 0;
+        font-size: 1.1rem;
+        color: black;
+    }
+
+/* CARDS */
+
+/* Common card styling */
+.card {
+    border: 2px solid black;
+    border-radius: 20px;
+    transition: all .3s ease;
+    background: white;
+    overflow: hidden;
+}
+
+    /* Card hover animation */
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+/* Dashboard card styling */
+.dashboard-card {
+    min-height: 220px;
+    background: white !important;
+    color: black !important;
+    border: 2px solid black !important;
+}
+
+    /* Force all dashboard card text to black */
+    .dashboard-card h1,
+    .dashboard-card h2,
+    .dashboard-card h3,
+    .dashboard-card h4,
+    .dashboard-card h5,
+    .dashboard-card h6,
+    .dashboard-card p,
+    .dashboard-card span,
+    .dashboard-card div {
+        color: black !important;
+    }
+
+/* Dashboard icon styling */
+.dashboard-icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+/* Feature card styling */
+.feature-card {
+    border-radius: 20px;
+}
+
+    /* Feature card hover effect */
+    .feature-card:hover {
+        transform: translateY(-8px);
+    }
+
+/* Action card styling */
+.action-card {
+    border-radius: 20px;
+}
+
+    /* Action card hover effect */
+    .action-card:hover {
+        transform: translateY(-8px);
+    }
+
+/* DASHBOARD COLORS REMOVED */
+
+/* Override dashboard color classes */
+.dashboard-blue,
+.dashboard-green,
+.dashboard-dark {
+    background: white !important;
+    color: black !important;
+    border: 2px solid black !important;
+}
+
+/* TABLES */
+
+/* Table styling */
+.table {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid black;
+}
+
+    /* Table header alignment */
+    .table th {
+        vertical-align: middle;
+    }
+
+/* BUTTONS */
+
+/* Common button styling */
+.btn {
+    border-radius: 10px;
+    transition: .3s;
+}
+
+    /* Button hover animation */
+    .btn:hover {
+        transform: scale(1.03);
+    }
+
+/* Large button styling */
+.btn-lg {
+    border-radius: 12px;
+}
+
+/* BADGES */
+
+/* Badge styling */
+.badge {
+    font-size: .95rem;
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+/* Heading styles */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 700;
+}
+
+/* FOOTER */
+
+/* Footer styling */
+.footer {
+    margin-top: auto;
+    background: white;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,.05);
+}
+
+/* NAVIGATION BUTTONS */
+
+/* Navigation button styling */
+.nav-home,
+.nav-dashboard,
+.nav-invoice,
+.nav-payment,
+.nav-logout {
+    background: white;
+    color: black !important;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 8px 15px !important;
+    margin-right: 8px;
+}
+
+    /* Navigation button hover effect */
+    .nav-home:hover,
+    .nav-dashboard:hover,
+    .nav-invoice:hover,
+    .nav-payment:hover,
+    .nav-logout:hover {
+        transform: translateY(-2px);
+        transition: .3s;
+        opacity: .9;
+        background: #f5f5f5;
+    }

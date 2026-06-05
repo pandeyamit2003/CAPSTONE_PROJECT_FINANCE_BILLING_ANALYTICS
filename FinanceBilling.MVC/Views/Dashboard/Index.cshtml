@@ -1,0 +1,416 @@
+﻿@model FinanceBilling.MVC.Models.RevenueAnalyticsViewModel
+
+<style>
+
+    /* Dashboard Styling */
+    .<style>
+
+    /* Header Section Style */
+    .dashboard-header {
+        background: #f8fafc;
+        color: #111827;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    /* Dashboard Card Design */
+    .dashboard-card {
+        background: #f8fafc !important;
+        color: #111827 !important;
+        border: 1px solid #dbe4ee !important;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,.04);
+        min-height: 140px;
+    }
+
+    /* Card Hover Effect */
+    .dashboard-card:hover {
+        transform: translateY(-3px);
+        transition: .3s;
+    }
+
+    /* Card Body Padding */
+    .dashboard-card .card-body {
+        padding: 20px;
+    }
+
+    /* Large Numeric Values */
+    .dashboard-card h2 {
+        font-size: 2rem;
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-weight: 700;
+        color: #0f172a !important;
+    }
+
+    /* Card Headings */
+    .dashboard-card h4,
+    .dashboard-card h5 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #334155 !important;
+        margin-bottom: 10px;
+    }
+
+    /* Card Text Color */
+    .dashboard-card p,
+    .dashboard-card span {
+        color: #475569 !important;
+    }
+
+    /* Card Header Styling */
+    .card-header {
+        background: #f8fafc !important;
+        color: #111827 !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        font-weight: 600;
+    }
+
+    /* Table Styling */
+    .table {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    /* Table Header Styling */
+    .table th {
+        background: #f8fafc;
+        color: #111827;
+    }
+
+    /* Table Hover Effect */
+    .table-hover tbody tr:hover {
+        background: #f8fafc;
+    }
+
+    /* Badge Styling */
+    .badge.bg-light {
+        background: #e2e8f0 !important;
+    }
+
+</style>
+</style>
+
+<!-- Dashboard Logo -->
+<div class="text-center mb-4">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+         width="120"
+         class="mb-3" />
+
+</div>
+
+<!-- Dashboard Title Section -->
+<div class="card shadow-lg mb-4 border-0">
+
+    <div class="card-body text-center dashboard-header">
+
+        <h2>📊 Financial Performance Overview</h2>
+
+        <p class="mb-0">
+            Monitor invoices, payments, revenue and pending collections in real time.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <!-- Summary Cards Row -->
+    <div class="row">
+
+        <!-- Total Invoices Card -->
+        <div class="col-md-3 mb-3">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body">
+
+                    <h5>📄 Total Invoices</h5>
+
+                    <h2>@Model.InvoiceCount</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Total Payments Card -->
+        <div class="col-md-3 mb-3">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body">
+
+                    <h5>💳 Total Payments</h5>
+
+                    <h2>@Model.PaymentCount</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Total Revenue Card -->
+        <div class="col-md-3 mb-3">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body">
+
+                    <h5>💰 Total Revenue</h5>
+
+                    <h2>₹@Model.TotalRevenue</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Today's Revenue Card -->
+        <div class="col-md-3 mb-3">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body">
+
+                    <h5>📈 Today's Revenue</h5>
+
+                    <h2>₹@Model.TodayRevenue</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Amount Summary Cards -->
+    <div class="row mb-4">
+
+        <!-- Total Invoice Amount -->
+        <div class="col-md-4">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body">
+
+                    <h4>🧾 Total Invoice Amount</h4>
+
+                    <h2>₹@Model.TotalInvoiceAmount</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Total Payment Amount -->
+        <div class="col-md-4">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body">
+
+                    <h4>✅ Total Payment Amount</h4>
+
+                    <h2>₹@Model.TotalPaymentAmount</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Pending Amount -->
+        <div class="col-md-4">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body">
+
+                    <h4>⚠ Pending Amount</h4>
+
+                    <h2>₹@Model.PendingAmount</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Collection Rate Analysis Section -->
+    <div class="card shadow-lg mt-4">
+
+        <div class="card-header">
+
+            <h4>📊 Collection Rate Analysis</h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <h2 class="text-success fw-bold">
+                @Model.CollectionRate %
+            </h2>
+
+            <!-- Collection Rate Progress Bar -->
+            <div class="progress" style="height:35px">
+
+                <div class="progress-bar bg-success fw-bold"
+                     style="width:@Model.CollectionRate%">
+
+                    @Model.CollectionRate %
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Invoice Collection Summary Table -->
+    <div class="card shadow-lg mt-5 border-0">
+
+        <div class="card-header">
+
+            <h4 class="mb-0">
+                📄 Invoice Collection Summary
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover table-striped align-middle">
+
+                    <thead>
+
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Invoice Number</th>
+                            <th>Invoice Amount</th>
+                            <th>Paid Amount</th>
+                            <th>Pending Amount</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <!-- Loop Through Invoice Data -->
+                        @foreach (var item in Model.InvoiceWiseData)
+                        {
+                            <tr>
+
+                                <td>@item.InvoiceId</td>
+
+                                <td>
+                                    <span class="badge bg-light text-dark border fs-6">
+                                        @item.InvoiceNumber
+                                    </span>
+                                </td>
+
+                                <td>₹@item.InvoiceAmount</td>
+
+                                <td class="text-success fw-bold">
+                                    ₹@item.PaidAmount
+                                </td>
+
+                                <td>
+
+                                    <!-- Check Pending Amount -->
+                                    @if (item.PendingAmount > 0)
+                                    {
+                                        <span class="badge bg-danger fs-6">
+                                            ₹@item.PendingAmount
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success fs-6">
+                                            ₹0
+                                        </span>
+                                    }
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Financial Summary Section -->
+    <div class="card shadow-lg mt-5">
+
+        <div class="card-header">
+
+            <h4>
+                📑 Financial Summary
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Total Invoice Amount</th>
+                    <td>₹@Model.TotalInvoiceAmount</td>
+                </tr>
+
+                <tr>
+                    <th>Total Payment Amount</th>
+                    <td>₹@Model.TotalPaymentAmount</td>
+                </tr>
+
+                <tr>
+                    <th>Pending Amount</th>
+                    <td class="text-danger fw-bold">
+                        ₹@Model.PendingAmount
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Back To Home Button -->
+    <div class="mt-4 mb-5">
+
+        <a asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-outline-secondary">
+
+            ← Back to Home
+
+        </a>
+
+    </div>
+
+</div>

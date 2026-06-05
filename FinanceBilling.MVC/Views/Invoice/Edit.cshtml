@@ -1,0 +1,67 @@
+﻿@model FinanceBilling.MVC.Models.InvoiceViewModel
+
+<!-- Page Heading -->
+<h2>Edit Invoice</h2>
+
+<!-- Edit Invoice Form -->
+<form asp-action="Edit" method="post">
+
+    <!-- Hidden Invoice ID Field -->
+    <input asp-for="InvoiceId" hidden />
+
+    <!-- Invoice Number Field -->
+    <div class="mb-3">
+        <label>Invoice Number</label>
+        <input asp-for="InvoiceNumber"
+               class="form-control" />
+    </div>
+
+    <!-- Customer Name Field -->
+    <div class="mb-3">
+        <label>Customer Name</label>
+        <input asp-for="CustomerName"
+               class="form-control" />
+    </div>
+
+    <!-- Invoice Date Field -->
+    <div class="mb-3">
+        <label>Invoice Date</label>
+        <input asp-for="InvoiceDate"
+               type="date"
+               class="form-control" />
+    </div>
+
+    <!-- Total Amount Field -->
+    <div class="mb-3">
+        <label>Total Amount</label>
+        <input asp-for="TotalAmount"
+               class="form-control" />
+    </div>
+
+    <!-- Status Dropdown -->
+    <div class="mb-3">
+        <label>Status</label>
+        <select asp-for="Status"
+                class="form-select">
+            <option>Pending</option>
+            <option>Paid</option>
+            <option>Partial Paid</option>
+        </select>
+    </div>
+
+    <!-- Update Invoice Button -->
+    <button type="submit"
+            class="btn btn-warning">
+
+        Update Invoice
+
+    </button>
+    
+    <!-- Back Button -->
+    <a asp-action="Index"
+           class="btn text-white"
+           style="background:linear-gradient(45deg,#6f42c1,#0dcaf0);border:none;">
+        ← Back
+    </a>
+
+</form>

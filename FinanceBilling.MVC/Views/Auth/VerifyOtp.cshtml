@@ -1,0 +1,71 @@
+﻿@model FinanceBilling.MVC.Models.VerifyOtpViewModel
+
+<!-- Main OTP Verification Container -->
+<div class="container mt-5 p-4 rounded shadow-sm"
+     style="background-color:#f8f9fa;">
+
+    <!-- Display success message if available -->
+    @if (TempData["Test"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Test"]
+        </div>
+    }
+
+    <!-- Page Heading -->
+    <h2>Verify OTP</h2>
+
+    <!-- Form submits OTP verification request -->
+    <form asp-action="VerifyOtp" method="post">
+
+        <!-- Email Field -->
+        <div class="mb-3">
+
+            <!-- Email Label -->
+            <label>Email</label>
+
+            <!-- Display user email -->
+            <input asp-for="Email"
+                   class="form-control" />
+
+        </div>
+
+        <!-- OTP Field -->
+        <div class="mb-3">
+
+            <!-- OTP Label -->
+            <label>OTP</label>
+
+            <!-- User enters OTP received via email -->
+            <input asp-for="OTP"
+                   class="form-control" />
+
+            <!-- Validation message for OTP field -->
+            <span asp-validation-for="OTP"
+                  class="text-danger"></span>
+
+        </div>
+
+        <!-- Verify Button -->
+        <button type="submit"
+                class="btn btn-success">
+
+            Verify OTP
+
+        </button>
+
+        <!-- Navigate back to Forgot Password page -->
+        <a asp-action="ForgotPassword"
+               class="btn"
+               style="background-color:#e9ecef;color:black;border:1px solid #dee2e6;">
+            Back
+        </a>
+    </form>
+
+    <!-- Client-side Validation Scripts -->
+    @section Scripts
+    {
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+</div>

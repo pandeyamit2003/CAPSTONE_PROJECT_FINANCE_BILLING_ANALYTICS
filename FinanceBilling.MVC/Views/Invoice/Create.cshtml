@@ -1,0 +1,112 @@
+﻿@model FinanceBilling.MVC.Models.InvoiceViewModel
+
+<!-- Main Card Container -->
+<div class="card shadow-lg">
+
+    <!-- Card Header -->
+    <div class="card-header bg-primary text-white">
+        <h4>Create New Invoice</h4>
+    </div>
+
+    <div class="card-body">
+
+        <!-- Display Model Validation Errors -->
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger mb-3">
+        </div>
+
+        <!-- Invoice Creation Form -->
+        <form asp-action="Create" method="post">
+
+            <!-- Invoice Number Field -->
+            <div class="mb-3">
+                <label asp-for="InvoiceNumber"
+                       class="form-label"></label>
+
+                <input asp-for="InvoiceNumber"
+                       class="form-control" />
+
+                <span asp-validation-for="InvoiceNumber"
+                      class="text-danger"></span>
+            </div>
+
+            <!-- Customer Name Field -->
+            <div class="mb-3">
+                <label asp-for="CustomerName"
+                       class="form-label"></label>
+
+                <input asp-for="CustomerName"
+                       class="form-control" />
+
+                <span asp-validation-for="CustomerName"
+                      class="text-danger"></span>
+            </div>
+
+            <!-- Total Amount Field -->
+            <div class="mb-3">
+                <label asp-for="TotalAmount"
+                       class="form-label"></label>
+
+                <input asp-for="TotalAmount"
+                       type="number"
+                       step="0.01"
+                       min="0.01"
+                       class="form-control" />
+
+                <span asp-validation-for="TotalAmount"
+                      class="text-danger"></span>
+            </div>
+
+            <!-- Invoice Status Dropdown -->
+            <div class="mb-3">
+                <label asp-for="Status"
+                       class="form-label"></label>
+
+                <select asp-for="Status"
+                        class="form-control">
+
+                    <option value="">-- Select Status --</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Partial Paid">Partial Paid</option>
+
+                </select>
+
+                <span asp-validation-for="Status"
+                      class="text-danger"></span>
+            </div>
+
+            <!-- Hidden Invoice Date Field -->
+            <input type="hidden"
+                   asp-for="InvoiceDate"
+                   value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" />
+
+            <!-- Action Buttons -->
+            <div class="d-flex gap-2 mt-3">
+
+                <!-- Save Invoice Button -->
+                <button type="submit"
+                        class="btn btn-success">
+                    Save Invoice
+                </button>
+
+                <!-- Back To Invoice List Button -->
+                <a asp-action="Index"
+                       class="btn text-white"
+                       style="background:linear-gradient(45deg,#6f42c1,#0dcaf0);border:none;">
+                    ← Back to Invoices
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <!-- Client Side Validation Scripts -->
+    <partial name="_ValidationScriptsPartial" />
+}

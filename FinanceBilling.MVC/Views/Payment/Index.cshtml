@@ -1,0 +1,261 @@
+﻿@using Microsoft.AspNetCore.Http
+@model List<FinanceBilling.MVC.Models.PaymentViewModel>
+
+<style>
+
+    /* Payment Dashboard Banner Styling */
+    .payment-banner {
+        background: #f1f5f9;
+        color: #111827;
+        border: 1px solid #cbd5e1;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    /* Dashboard Card Styling */
+    .dashboard-card {
+        background: #f1f5f9;
+        color: #111827;
+        border: 1px solid #cbd5e1;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,.05);
+        transition: .3s;
+    }
+
+        /* Dashboard Card Hover Effect */
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Dashboard Card Text Styling */
+        .dashboard-card h2,
+        .dashboard-card h5,
+        .dashboard-card p {
+            color: #111827;
+        }
+
+    /* Table Row Hover Effect */
+    .table-hover tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+    /* Summary Header Styling */
+    .summary-header {
+        background: #f1f5f9;
+        color: #111827;
+        border-bottom: 1px solid #cbd5e1;
+        font-weight: 600;
+    }
+
+</style>
+
+<!-- Dashboard Logo -->
+<div class="text-center mb-4">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+         width="90" />
+
+</div>
+
+<!-- Page Header and Add Payment Button -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="fw-bold">
+        Payment Management
+    </h2>
+
+    <!-- Show Add Payment Button For Admin and Accountant -->
+    @if (Context.Session.GetString("Role") == "1" ||
+         Context.Session.GetString("Role") == "2")
+    {
+        <a asp-action="Create"
+               class="btn btn-outline-success">
+
+            + Add Payment
+
+        </a>
+    }
+
+</div>
+
+<!-- Payment Tracking Banner -->
+<div class="payment-banner shadow mb-4 text-center">
+
+    <h3>💳 Payment Tracking Dashboard</h3>
+
+    <p class="mb-0">
+        Monitor customer payments and collection performance.
+    </p>
+
+</div>
+
+<!-- Payment List Card -->
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <!-- Payment Table -->
+        <table class="table table-hover table-striped">
+
+            <thead class="table-light">
+
+                <tr>
+                    <th>Payment Id</th>
+                    <th>Invoice Id</th>
+                    <th>Amount Paid</th>
+                    <th>Payment Date</th>
+                    <th>Payment Method</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <!-- Loop Through Payment Records -->
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.PaymentId</td>
+
+                        <td>@item.InvoiceId</td>
+
+                        <td>₹@item.AmountPaid</td>
+
+                        <td>
+                            @item.PaymentDate.ToShortDateString()
+                        </td>
+
+                        <td>
+
+                            <!-- Payment Method Badge -->
+                            <span class="badge bg-light text-dark border fs-6">
+                                @item.PaymentMethod
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <!-- View Payment Button -->
+                            <a asp-action="Details"
+                                   asp-route-id="@item.PaymentId"
+                                   class="btn btn-info btn-sm">
+
+                                View
+
+                            </a>
+
+                            <!-- Edit Payment Button For Admin and Accountant -->
+                            @if (Context.Session.GetString("Role") == "1" ||
+                                 Context.Session.GetString("Role") == "2")
+                            {
+                                <a asp-action="Edit"
+                                       asp-route-id="@item.PaymentId"
+                                       class="btn btn-warning btn-sm">
+
+                                    Edit
+
+                                </a>
+                            }
+
+                            <!-- Delete Payment Button For Admin Only -->
+                            @if (Context.Session.GetString("Role") == "1")
+                            {
+                                <a asp-action="Delete"
+                                       asp-route-id="@item.PaymentId"
+                                       class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Delete Payment?')">
+
+                                    Delete
+
+                                </a>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- Payment Summary Section -->
+<div class="card shadow mt-4">
+
+    <div class="card-header summary-header">
+
+        📊 Payment Summary
+
+    </div>
+
+    <div class="card-body">
+
+        <!-- Calculate Unique Payment Methods -->
+        @{
+            var paymentMethodCount =
+                Model.Select(x => x.PaymentMethod)
+                     .Distinct()
+                     .Count();
+        }
+
+        <div class="row text-center">
+
+            <!-- Total Payments Count -->
+            <div class="col-md-4">
+
+                <h3 class="text-primary">
+                    @Model.Count()
+                </h3>
+
+                <p>Total Payments</p>
+
+            </div>
+
+            <!-- Total Collection Amount -->
+            <div class="col-md-4">
+
+                <h3 class="text-success">
+                    ₹@Model.Sum(x => x.AmountPaid)
+                </h3>
+
+                <p>Total Collection</p>
+
+            </div>
+
+            <!-- Unique Payment Methods Count -->
+            <div class="col-md-4">
+
+                <h3 class="text-secondary">
+                    @paymentMethodCount
+                </h3>
+
+                <p>Payment Methods</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Back To Home Button -->
+<div class="mt-4">
+
+    <a asp-controller="Home"
+           asp-action="Index"
+           class="btn btn-outline-secondary">
+
+        🏠 Back to Home
+
+    </a>
+
+</div>

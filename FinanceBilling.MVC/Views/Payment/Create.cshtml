@@ -1,0 +1,166 @@
+﻿@model FinanceBilling.MVC.Models.PaymentViewModel
+
+<!-- Main Payment Card -->
+<div class="card shadow-lg">
+
+    <!-- Card Header -->
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0">
+            Add New Payment
+        </h4>
+    </div>
+
+    <div class="card-body">
+
+        <!-- Payment Creation Form -->
+        <form asp-action="Create" method="post">
+
+            <!-- Invoice ID Field -->
+            <div class="mb-3">
+
+                <label asp-for="InvoiceId"
+                       class="form-label">
+                </label>
+
+                <input asp-for="InvoiceId"
+                       type="number"
+                       min="1"
+                       class="form-control" />
+
+                <span asp-validation-for="InvoiceId"
+                      class="text-danger"></span>
+
+            </div>
+
+            <!-- Amount Paid Field -->
+            <div class="mb-3">
+
+                <label asp-for="AmountPaid"
+                       class="form-label">
+                </label>
+
+                <!-- Amount Paid Textbox -->
+                <input asp-for="AmountPaid"
+                       id="AmountPaid"
+                       type="number"
+                       step="1"
+                       min="1"
+                       class="form-control" />
+
+                <!-- Custom API Error Message -->
+                @if (ViewBag.AmountError != null)
+                {
+                    <div id="amountError"
+                         class="text-danger mt-1">
+
+                        @ViewBag.AmountError
+
+                    </div>
+                }
+
+                <span asp-validation-for="AmountPaid"
+                      class="text-danger"></span>
+
+
+            </div>
+
+            <!-- Payment Date Field -->
+            <div class="mb-3">
+
+                <label asp-for="PaymentDate"
+                       class="form-label">
+                </label>
+
+                <input asp-for="PaymentDate"
+                       type="date"
+                       class="form-control" />
+
+                <span asp-validation-for="PaymentDate"
+                      class="text-danger"></span>
+
+            </div>
+
+          
+            <!-- Payment Method Field -->
+            <div class="mb-3">
+
+                <label asp-for="PaymentMethod"
+                       class="form-label">
+                </label>
+
+                <select asp-for="PaymentMethod"
+                        class="form-control">
+
+                    <option value="">-- Select Payment Method --</option>
+                    <option value="UPI">UPI</option>
+                    <option value="CREDIT CARD">CREDIT CARD</option>
+                    <option value="DEBIT CARD">DEBIT CARD</option>
+                    <option value="RTGS">RTGS</option>
+                    <option value="CASH">CASH</option>
+
+                </select>
+
+                <span asp-validation-for="PaymentMethod"
+                      class="text-danger"></span>
+
+            </div>
+
+
+            <!-- Action Buttons -->
+            <div class="d-flex gap-2 mt-3">
+
+                <!-- Save Payment Button -->
+                <button type="submit"
+                        class="btn btn-success">
+                    Save Payment
+                </button>
+
+                <!-- Back To Payments Button -->
+                <a asp-action="Index"
+                       class="btn text-white"
+                       style="background:linear-gradient(45deg,#6f42c1,#0dcaf0);border:none;">
+                    ← Back to Payments
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <!-- Client Side Validation Scripts -->
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        // Wait until page is fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Get AmountPaid textbox
+            const amountBox =
+                document.getElementById("AmountPaid");
+
+            // Get custom error message div
+            const errorBox =
+                document.getElementById("amountError");
+
+            // Check both controls exist
+            if (amountBox && errorBox)
+            {
+                // Whenever user changes amount
+                amountBox.addEventListener("input", function () {
+
+                    // Hide old error message
+                    errorBox.style.display = "none";
+
+                });
+            }
+
+        });
+
+    </script>
+}
